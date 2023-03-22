@@ -1,0 +1,195 @@
+<div
+  class="container-fluid bg-dark text-light py-5 d-flex flex-row flex-wrap"
+  id="list_Of_devices">
+    <ul class="col-sm-12 col-lg-3 mt-5 list-unstyled">
+      <div class="row mb-3">
+      <div class="d-flex align-items-center col">
+        <label for="filter" class="text-left">
+          <mat-icon>search</mat-icon>
+        </label>
+        <input id="filterSearch"
+        [(ngModel)]="searchvalue"
+        class="form-control col-1 col-sm-6 rounded-3"
+        placeholder="I search...."/>
+      </div>
+      <div class="col">
+          <li>
+            <nav class="navbar bg-dark fixed-left">
+              <button
+                  class="navbar-toggler mt-1"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#filrtNavbar"
+                  aria-controls="filrtNavbar"
+                  mat-mini-fab color="warn">
+                    <mat-icon>filter_list</mat-icon>
+              </button>
+              <div
+                  class="offcanvas offcanvas-end"
+                  tabindex="-1"
+                  id="filrtNavbar"
+                  aria-labelledby="filrtNavbar">
+                  <div class="offcanvas-header">
+                    <h2 class="offcanvas-title text-dark" id="filter">Filters</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1">
+                      <h4 class="text-dark">Filter by type</h4>
+                      <li class="nav-item py-1">
+                        <button mat-raised-button color="primary" class="filterBtn ">
+                          <a (click)="filterType('')" >
+                              All products
+                          </a>
+                        </button>
+                      </li>
+                      <li class="nav-item py-1">
+                        <button mat-raised-button color="primary" class="filterBtn">
+                          <a (click)="filterType('phone')" >
+                              Mobiles
+                          </a>
+                        </button>
+                      </li>
+                      <li class="nav-item py-1">
+                        <button mat-raised-button color="primary" class="filterBtn">
+                          <a (click)="filterType('tablet')">
+                              Tablet
+                          </a>
+                        </button>
+                      </li>
+                      <li class="nav-item py-1">
+                        <h3 class="text-dark">Filter by price</h3>
+                        <div class="d-flex align-items-center col">
+                          <div class="d-flex flex-column">
+                            <input id="filterPrice"
+                            [(ngModel)]="minPrice"
+                            class="form-control col-1 col-sm-6 "
+                            placeholder="minimal price"/>
+                            <h6 class="text-dark">minimal price</h6>
+                          </div>
+                          <div class="d-flex flex-column">
+                            <input id="filterPrice"
+                            [(ngModel)]="maxPrice"
+                            class="form-control col-1 col-sm-6 "
+                            placeholder="maximal price"/>
+                            <h6 class="text-dark">maximal price</h6>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+          </li>
+      </div>
+    </div>
+      <h3 class="text-center" id="Hot_sale">
+         Hot Sales
+      </h3>
+      <ul
+        class="list-unstyled px-3"
+        *ngFor="let item of stuff">
+          <li
+            *ngIf="item.discount"
+            id="table_hot_sale"
+            class="py-2">
+             <a
+              class="px-2"
+              id="hot_sales"
+              routerLink="/products/{{item.id}}">{{item.name}}
+             </a>
+          </li>
+      </ul>
+    </ul>
+    <div class="col-sm-12 col-lg-9 text-dark text-center mt-5">
+      <app-banner-advertisement></app-banner-advertisement>
+      <pagination-controls
+        class="btn-group btn-outline-primary mt-5 my-pagination text-light"
+        (pageChange)="page = $event">
+      </pagination-controls>
+      <div class="px-3 d-flex flex-row justify-content-evenly flex-wrap gap-4">
+        <div
+          class="row col-sm-11 col-md-6 col-lg-6 col-xl-6"
+          *ngFor="let item of filterCategory | searchFilter:searchvalue | price:minPrice:maxPrice |  paginate: {
+            itemsPerPage: 6,
+            currentPage: page,
+            totalItems: totalLength
+          }">
+        <div
+          class="card my-2 border-5 border-info d-flex flex-column justify-content-between align-items-center h-65"
+          style="width: 90%;"
+          id="mat_card">
+         <div class="card-body">
+          <div class="d-flex justify-content-between gap-4">
+            <button
+              mat-stroked-button color="primary"
+              class="buttons_home"
+              aria-label="buy this device"
+              (click)="openModal()"
+              (click)="addToCart(item)">
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+              <a
+                class="text-decoration-none"
+                id="item_name"
+                [title]="item.name + 'details'"
+                routerLink="/products/{{item.id}}"
+                aria-label="mobile name">
+                  <h3
+                    class="fw-bold">
+                    {{item.name}}
+                  </h3>
+              </a>
+          </div>
+            <div *ngIf="item.price < 600" class="position-absolute top-0 start-100 translate-middle">
+              <button mat-flat-button color="accent">Best Seller</button>
+            </div>
+            <img src='./assets/{{item.imageUrl}}'
+            class="img-responsive rounded-3 mt-3 mb-0"
+            alt="mobile picture"
+            routerLink="/products/{{item.id}}">
+        </div>
+
+        <div class="container d-flex flex-column properties align-items-start">
+          <mat-card-subtitle><strong>Capacity:</strong> {{item.capacity}}</mat-card-subtitle>
+          <mat-card-subtitle><strong>Screen:</strong> {{item.screen}}</mat-card-subtitle>
+          <mat-card-subtitle><strong>RAM (Access Memory):</strong> {{item.ram}}</mat-card-subtitle>
+        </div>
+        <mat-card-content>
+          <p class="text-center my-2 h-25">
+            {{ item.snippet}}
+          </p>
+        </mat-card-content>
+        <div class="d-flex align-items-start border-3 border-top border-info gap-1 mb-3">
+          <div class="d-flex flex-column my-3">
+            <span
+              aria-label="price of device"
+              [style.text-decoration.]="item.discount ?
+              'line-through' :  'none'">
+             <strong> Price: </strong> {{ item.price | currency }}
+            </span>
+            <span id="sale" class=""
+              *ngIf="item.discount > 0"
+              aria-label="discount">
+              -{{ item.discount }}%</span>
+              <span
+                id="price_with_discont"
+                *ngIf="item.discount"
+                aria-label="total price">
+                New Price: {{ item.price - (item.price  / 100 * item.discount) | currency}}
+            </span>
+          </div>
+       </div>
+    </div>
+  </div>
+      </div>
+      <pagination-controls
+        class="btn-group btn-outline-primary mt-5 text-light my-pagination"
+        (pageChange)="page = $event">
+     </pagination-controls>
+    </div>
+</div>
+
+
+
+

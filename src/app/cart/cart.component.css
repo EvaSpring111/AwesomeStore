@@ -1,0 +1,102 @@
+#table_container{
+  margin-top: 500px;
+}
+
+th {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.card-table {
+  width: 100vw;
+  width: fit-content;
+}
+
+.card {
+  height: 60vh;
+  margin: 25px;
+  padding: 25px;
+}
+
+.center img {
+  text-decoration: none;
+  color: black;
+  border: none;
+  outline: none;
+  height: 162px;
+  width: 250px;
+  margin: 20px 0px;
+}
+
+table thead {
+  padding-top: 700px;
+}
+
+table tr {
+  color: rgb(245, 238, 238);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  letter-spacing: 1px;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.card-table {
+  display: flex;
+  flex-direction: column;
+  min-width: 100vw;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: .25rem;
+}
+
+::placeholder {
+  color: wheat;
+}
+
+mat-label {
+  color: wheat;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.checkout .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+  width: fit-content;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+button.big_btns{
+  width: max-content;
+}
+
+button:hover,
+button:focus {
+  transform: translateY(-0.25rem);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+

@@ -1,0 +1,32 @@
+
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+.container {
+  margin-top: 60px;
+}
+.col-lg-9{
+  overflow-x: hidden;
+}
+
+h1, h3 {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-style: normals;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+a:hover,
+a:focus{
+  color: rgb(10, 202, 97);
+}
+
+

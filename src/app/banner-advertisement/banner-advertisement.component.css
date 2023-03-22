@@ -1,0 +1,25 @@
+#carouselExampleDark{
+  padding-top: 100px;
+
+}
+
+#carouselExampleDark img {
+  max-height: 400px;
+}
+
+h3, h4, p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-style: oblique;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+.ligth{
+  color: white;
+}
+.red {
+  color: maroon;
+  background: white;
+}
